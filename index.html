@@ -33,9 +33,42 @@
     }
     .sectionLabel small{display:block;color:var(--muted);font-weight:600;margin-top:4px}
 
-    .item{display:grid;grid-template-columns:160px 1fr;gap:12px;padding:10px 10px;border-radius:14px;border:1px solid transparent; cursor:pointer}
+    .item{display:grid;grid-template-columns:128px 1fr;gap:12px;padding:10px 10px;border-radius:14px;border:1px solid transparent; cursor:pointer; position:relative}
     .item + .item{margin-top:8px}
-    .time{font-variant-numeric:tabular-nums;font-weight:800;color:#dbeafe; direction:ltr; text-align:right; letter-spacing:.2px}
+    .time{font-variant-numeric:tabular-nums;font-weight:800;color:#dbeafe; direction:ltr; text-align:right; letter-spacing:.2px; white-space:nowrap; font-size:14px; line-height:1.2}
+
+    /* Responsive: keep time compact on small screens */
+    @media (max-width: 420px){
+      .item{grid-template-columns:116px 1fr}
+      .time{font-size:13px}
+    }
+
+    /* Subtle, smart "current" indicator */
+    @keyframes pulseNow { 0%{transform:scale(1); opacity:.55} 50%{transform:scale(1.35); opacity:.18} 100%{transform:scale(1); opacity:.55} }
+    .item.now::before{
+      content:"";
+      position:absolute;
+      inset-inline-end:10px;
+      inset-block-start:12px;
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(79,209,197,0.95);
+      box-shadow:0 0 0 6px rgba(79,209,197,0.12);
+    }
+    .item.now::after{
+      content:"";
+      position:absolute;
+      inset-inline-end:10px;
+      inset-block-start:12px;
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(79,209,197,0.95);
+      animation:pulseNow 1.6s ease-in-out infinite;
+    }
+    .item.now{padding-inline-end:22px}
+
     .title{font-weight:800}
     .loc{color:var(--muted);font-size:12px;margin-top:2px}
     .meta2{color:var(--muted);font-size:12px;margin-top:6px;line-height:1.5}
