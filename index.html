@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تايم لاين — اللقاء التشاوري + الضيافة (3–4 فبراير 2026)</title>
+  <style>
+    :root{
+      --bg:#0b1220; --card:#101a30; --muted:#9fb0d0; --text:#eef2ff;
+      --accent:#4fd1c5; --accent2:#60a5fa; --warn:#fbbf24; --ok:#22c55e;
+      --line:#223258; --chip:#162546;
+    }
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial; background:linear-gradient(180deg,#07101f, #0b1220 40%, #070b13); color:var(--text)}
+    .wrap{max-width:900px;margin:0 auto;padding:18px}
+    h1{font-size:20px;margin:4px 0 10px}
+    .sub{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:14px}
+    .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:rgba(16,26,48,.65);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:12px 0 16px}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:13px;color:var(--text)}
+    .pill b{font-weight:700}
+    select,button{background:var(--chip);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}
+    button{cursor:pointer}
+    .grid{display:grid;gap:14px}
+    .day{background:rgba(16,26,48,.55);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .day header{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:14px 14px 10px;border-bottom:1px solid rgba(34,50,88,.7)}
+    .day header h2{font-size:16px;margin:0}
+    .day header .meta{color:var(--muted);font-size:12px;line-height:1.5}
+    .items{padding:10px 12px 14px}
+    .item{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 10px;border-radius:14px;border:1px solid transparent}
+    .item + .item{margin-top:8px}
+    .time{font-variant-numeric:tabular-nums;font-weight:700;color:#dbeafe}
+    .title{font-weight:700}
+    .loc{color:var(--muted);font-size:12px;margin-top:2px}
+    .now{border-color:rgba(79,209,197,.6);background:rgba(79,209,197,.08)}
+    .next{border-color:rgba(96,165,250,.55);background:rgba(96,165,250,.08)}
+    .done{opacity:.7}
+    .tag{display:inline-block;margin-top:6px;font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.15);color:var(--muted)}
+    .tag.now{color:#0a1b17;background:rgba(79,209,197,.85);border-color:transparent}
+    .tag.next{color:#07101f;background:rgba(96,165,250,.9);border-color:transparent}
+    .tag.done{color:#07101f;background:rgba(251,191,36,.9);border-color:transparent}
+    .foot{color:var(--muted);font-size:12px;line-height:1.7;margin-top:14px}
+    .small{font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>تايم لاين — الضيافة + اللقاء التشاوري (3–4 فبراير 2026)</h1>
+    <div class="sub">
+      صفحة واحدة تُظهر لك تلقائيًا «أنت الآن في أي مرحلة» حسب وقت جهازك. 
+      اضبط تاريخ/وقت جهازك على توقيت السعودية (GMT+3).
+    </div>
+
+    <div class="bar">
+      <span class="pill">الآن: <b id="nowText">—</b></span>
+      <span class="pill">الحالة: <b id="statusText">—</b></span>
+      <label class="pill" for="dayMode">عرض اليوم:</label>
+      <select id="dayMode">
+        <option value="auto">تلقائي</option>
+        <option value="tue">الثلاثاء 3 فبراير</option>
+        <option value="wed">الأربعاء 4 فبراير</option>
+        <option value="all">اليومان</option>
+      </select>
+      <button id="scrollBtn" title="انتقال للحدث الحالي">انتقل للحدث الحالي</button>
+    </div>
+
+    <div class="grid">
+      <!-- Tuesday -->
+      <section class="day" data-day="tue">
+        <header>
+          <div>
+            <h2>الثلاثاء — 3 فبراير 2026</h2>
+            <div class="meta">الضيافة — فندق موڤنبيك الخبر</div>
+          </div>
+          <div class="meta small">(لا يوجد تنقّل في هذا اليوم)</div>
+        </header>
+        <div class="items">
+          <div class="item" data-date="2026-02-03" data-start="06:30" data-end="10:00">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">وجبة الإفطار</div>
+              <div class="loc">مطعم الفندق الرئيسي — الدور 12</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-03" data-start="19:00" data-end="24:00">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">وجبة العشاء</div>
+              <div class="loc">مطعم الفندق الرئيسي — الدور 12</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Wednesday -->
+      <section class="day" data-day="wed">
+        <header>
+          <div>
+            <h2>الأربعاء — 4 فبراير 2026</h2>
+            <div class="meta">الضيافة + اللقاء التشاوري</div>
+          </div>
+          <div class="meta small">ملاحظة: كل هذا اليوم ضمن مواقع محددة (حسب الجدول).</div>
+        </header>
+        <div class="items">
+          <!-- Hotel -->
+          <div class="item" data-date="2026-02-04" data-start="06:30" data-end="10:00">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">وجبة الإفطار</div>
+              <div class="loc">مطعم الفندق الرئيسي — الدور 12 (موڤنبيك الخبر)</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="12:30" data-end="13:30">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">استقبال + وجبة غداء</div>
+              <div class="loc">قاعة المها — فندق موڤنبيك الخبر</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="13:30" data-end="18:00">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">مقر اللقاء التشاوري</div>
+              <div class="loc">قاعة المها — فندق موڤنبيك الخبر</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+
+          <!-- Event agenda (same day) -->
+          <div class="item" data-date="2026-02-04" data-start="12:30" data-end="13:30">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">(داخل جدول اللقاء) استقبال + غداء</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="13:30" data-end="13:35">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">ترحيب</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="13:35" data-end="13:55">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">كلمة افتتاحية وترحيبية</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="13:55" data-end="14:25">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">نقاش مفتوح</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="14:25" data-end="15:10">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">تجربة التحول في جامعة الإمام عبد الرحمن بن فيصل (عرض + مناقشة)</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="15:10" data-end="15:35">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">مرصد البحث والابتكار في التعليم العالي (عرض + مناقشة)</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="15:35" data-end="16:00">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">استراحة + صلاة العصر</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="16:00" data-end="16:35">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">منصة الإنفاق والتخطيط المالي والتحول في الجامعات (عرض + مناقشة)</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="16:35" data-end="17:05">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">المواءمة مع سوق العمل (عرض + مناقشة)</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="17:05" data-end="17:35">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">تقرير توظيف الخريجين في سوق العمل السعودي (عرض + مناقشة)</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="17:35" data-end="17:55">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">دور الجامعات في تطوير المهارات وإعادة التأهيل والتعلم مدى الحياة (عرض + مناقشة)</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+          <div class="item" data-date="2026-02-04" data-start="17:55" data-end="18:00">
+            <div class="time" data-time></div>
+            <div>
+              <div class="title">صورة تذكارية</div>
+              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <span class="tag" data-tag></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="foot">تطوير: بدر السلمان</div>
+  </div>
+
+<script>
+  function pad2(n){ return String(n).padStart(2,'0'); }
+
+  function to12h(hhmm){
+    let [h,m] = hhmm.split(':').map(Number);
+    let ampm = 'AM';
+    if (h === 24) { h = 0; }
+    if (h >= 12) ampm = 'PM';
+    let h12 = h % 12;
+    if (h12 === 0) h12 = 12;
+    return `${h12}:${pad2(m)} ${ampm}`;
+  }
+
+  function parseLocal(dateStr, timeStr){
+    let [Y,M,D] = dateStr.split('-').map(Number);
+    let [h,m] = timeStr.split(':').map(Number);
+    if (h === 24) { h = 23; m = 59; } // end-of-day guard
+    return new Date(Y, M-1, D, h, m, 0, 0);
+  }
+
+  function within(now, start, end){
+    return now >= start && now < end;
+  }
+
+  function updateTimes(){
+    document.querySelectorAll('[data-time]').forEach(el => {
+      const item = el.closest('.item');
+      const s = item.dataset.start;
+      const e = item.dataset.end;
+      el.textContent = `${to12h(s)} – ${to12h(e)}`;
+    });
+  }
+
+  function setDayVisibility(mode){
+    const sections = document.querySelectorAll('.day');
+    sections.forEach(sec => {
+      const d = sec.dataset.day;
+      let show = true;
+      if (mode === 'tue') show = (d === 'tue');
+      if (mode === 'wed') show = (d === 'wed');
+      if (mode === 'all') show = true;
+      if (mode === 'auto') {
+        const now = new Date();
+        const y = now.getFullYear(), m = now.getMonth()+1, day = now.getDate();
+        // auto based on Feb 3/4 2026, otherwise show all
+        if (y === 2026 && m === 2 && day === 3) show = (d === 'tue');
+        else if (y === 2026 && m === 2 && day === 4) show = (d === 'wed');
+        else show = true;
+      }
+      sec.style.display = show ? '' : 'none';
+    });
+  }
+
+  function clearMarks(){
+    document.querySelectorAll('.item').forEach(it => {
+      it.classList.remove('now','next','done');
+      const tag = it.querySelector('[data-tag]');
+      if (tag) { tag.className = 'tag'; tag.textContent = ''; }
+    });
+  }
+
+  function mark(){
+    clearMarks();
+    const now = new Date();
+
+    // Human-readable now
+    const h = now.getHours(), m = now.getMinutes();
+    const now12 = `${to12h(`${pad2(h)}:${pad2(m)}`)} — ${now.getFullYear()}-${pad2(now.getMonth()+1)}-${pad2(now.getDate())}`;
+    document.getElementById('nowText').textContent = now12;
+
+    // Collect visible items only
+    const items = Array.from(document.querySelectorAll('.day')).filter(d => d.style.display !== 'none')
+      .flatMap(day => Array.from(day.querySelectorAll('.item')));
+
+    // Compute intervals
+    const intervals = items.map(it => {
+      const s = parseLocal(it.dataset.date, it.dataset.start);
+      const e = parseLocal(it.dataset.date, it.dataset.end);
+      return { it, s, e };
+    }).sort((a,b)=>a.s-b.s);
+
+    // Find current
+    let current = intervals.find(x => within(now, x.s, x.e));
+
+    // Find next
+    let next = intervals.find(x => now < x.s);
+
+    // Mark done
+    intervals.forEach(x => {
+      if (now >= x.e) {
+        x.it.classList.add('done');
+        const tag = x.it.querySelector('[data-tag]');
+        if (tag) { tag.classList.add('done'); tag.textContent = 'انتهى'; }
+      }
+    });
+
+    if (current) {
+      current.it.classList.add('now');
+      const tag = current.it.querySelector('[data-tag]');
+      if (tag) { tag.classList.add('now'); tag.textContent = 'الآن'; }
+      document.getElementById('statusText').textContent = 'حدث جاري الآن';
+    } else if (next) {
+      document.getElementById('statusText').textContent = 'لا يوجد حدث جارٍ الآن';
+    } else {
+      document.getElementById('statusText').textContent = 'انتهت جميع الأحداث الظاهرة';
+    }
+
+    if (next) {
+      next.it.classList.add('next');
+      const tag = next.it.querySelector('[data-tag]');
+      if (tag && !tag.textContent) { tag.classList.add('next'); tag.textContent = 'التالي'; }
+    }
+
+    // store current element for scroll
+    window.__currentItem = (current && current.it) || (next && next.it) || null;
+  }
+
+  document.getElementById('dayMode').addEventListener('change', (e)=>{
+    setDayVisibility(e.target.value);
+    mark();
+  });
+
+  document.getElementById('scrollBtn').addEventListener('click', ()=>{
+    if (window.__currentItem) window.__currentItem.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  updateTimes();
+  setDayVisibility('auto');
+  mark();
+  setInterval(mark, 30_000);
+</script>
+</body>
+</html>
