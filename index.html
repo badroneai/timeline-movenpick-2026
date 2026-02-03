@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تايم لاين — اللقاء التشاوري + الضيافة (3–4 فبراير 2026)</title>
+  <title>مجلس شؤون الجامعات — برنامج ضيوف اللقاء التشاوري (3–4 فبراير 2026)</title>
   <style>
     :root{
       --bg:#0b1220; --card:#101a30; --muted:#9fb0d0; --text:#eef2ff;
@@ -25,28 +25,52 @@
     .day header h2{font-size:16px;margin:0}
     .day header .meta{color:var(--muted);font-size:12px;line-height:1.5}
     .items{padding:10px 12px 14px}
-    .item{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 10px;border-radius:14px;border:1px solid transparent}
+
+    .sectionLabel{margin:10px 2px 8px; padding:10px 12px; border-radius:14px;
+      background:linear-gradient(90deg, rgba(96,165,250,.18), rgba(79,209,197,.12));
+      border:1px solid rgba(96,165,250,.35);
+      font-weight:800;
+    }
+    .sectionLabel small{display:block;color:var(--muted);font-weight:600;margin-top:4px}
+
+    .item{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 10px;border-radius:14px;border:1px solid transparent; cursor:pointer}
     .item + .item{margin-top:8px}
     .time{font-variant-numeric:tabular-nums;font-weight:700;color:#dbeafe}
-    .title{font-weight:700}
+    .title{font-weight:800}
     .loc{color:var(--muted);font-size:12px;margin-top:2px}
+    .meta2{color:var(--muted);font-size:12px;margin-top:6px;line-height:1.5}
+
     .now{border-color:rgba(79,209,197,.6);background:rgba(79,209,197,.08)}
     .next{border-color:rgba(96,165,250,.55);background:rgba(96,165,250,.08)}
     .done{opacity:.7}
+
+    /* Main agenda emphasis */
+    .agenda{border-color:rgba(96,165,250,.35); background:rgba(96,165,250,.06)}
+    .agenda.now{border-color:rgba(79,209,197,.6); background:rgba(79,209,197,.10)}
+    .agenda.next{border-color:rgba(96,165,250,.65); background:rgba(96,165,250,.12)}
+
     .tag{display:inline-block;margin-top:6px;font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.15);color:var(--muted)}
     .tag.now{color:#0a1b17;background:rgba(79,209,197,.85);border-color:transparent}
     .tag.next{color:#07101f;background:rgba(96,165,250,.9);border-color:transparent}
     .tag.done{color:#07101f;background:rgba(251,191,36,.9);border-color:transparent}
+
+    .details{display:none;margin-top:10px;padding:10px 10px;border-radius:12px;border:1px solid rgba(34,50,88,.7);background:rgba(0,0,0,.16)}
+    .item.expanded .details{display:block}
+    .details .row{display:flex;flex-wrap:wrap;gap:10px;color:var(--text);font-size:12px}
+    .details .row span{background:rgba(22,37,70,.65);border:1px solid rgba(34,50,88,.7);padding:6px 8px;border-radius:999px}
+    .details .hint{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.6}
+
     .foot{color:var(--muted);font-size:12px;line-height:1.7;margin-top:14px}
     .small{font-size:12px}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>تايم لاين — الضيافة + اللقاء التشاوري (3–4 فبراير 2026)</h1>
+    <h1>مجلس شؤون الجامعات</h1>
     <div class="sub">
-      صفحة واحدة تُظهر لك تلقائيًا «أنت الآن في أي مرحلة» حسب وقت جهازك. 
-      اضبط تاريخ/وقت جهازك على توقيت السعودية (GMT+3).
+      برنامج ضيوف اللقاء التشاوري الحادي عشر لرؤساء الجامعات السعودية<br/>
+      يومي الثلاثاء والأربعاء (3–4 فبراير 2026)<br/>
+      فندق موڤنبيك الخبر
     </div>
 
     <div class="bar">
@@ -128,101 +152,143 @@
             </div>
           </div>
 
-          <!-- Event agenda (same day) -->
-          <div class="item" data-date="2026-02-04" data-start="12:30" data-end="13:30">
+          <div class="sectionLabel">جدول اللقاء التشاوري (الأساسي)<small>العنوان: التحول في التعليم العالي — المكان: فندق موڤنبيك الخبر</small></div>
+
+          <div class="item agenda" data-date="2026-02-04" data-start="12:30" data-end="13:30" data-topic="الاستقبال وتناول طعام الغداء" data-owner="جامعة الإمام عبد الرحمن بن فيصل" data-duration="1 ساعة">
             <div class="time" data-time></div>
             <div>
-              <div class="title">(داخل جدول اللقاء) استقبال + غداء</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">الاستقبال وتناول طعام الغداء</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المعد: جامعة الإمام عبد الرحمن بن فيصل • المدة: 1 ساعة</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details>
+                <div class="row" data-statusrow></div>
+                <div class="hint">اضغط مرة أخرى للإخفاء.</div>
+              </div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="13:30" data-end="13:35">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="13:30" data-end="13:35" data-topic="الترحيب برؤساء الجامعات" data-speaker="الأمين العام لمجلس شؤون الجامعات" data-duration="5 دقائق">
             <div class="time" data-time></div>
             <div>
-              <div class="title">ترحيب</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">الترحيب برؤساء الجامعات</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المحاور: الأمين العام لمجلس شؤون الجامعات • المدة: 5 دقائق</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="13:35" data-end="13:55">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="13:35" data-end="13:55" data-topic="كلمة افتتاحية وترحيبية" data-speaker="معالي وزير التعليم (رئيس مجلس شؤون الجامعات)" data-duration="20 دقيقة">
             <div class="time" data-time></div>
             <div>
               <div class="title">كلمة افتتاحية وترحيبية</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المحاور: معالي وزير التعليم (رئيس مجلس شؤون الجامعات) • المدة: 20 دقيقة</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="13:55" data-end="14:25">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="13:55" data-end="14:35" data-topic="نقاش مفتوح مع رؤساء الجامعات" data-duration="40 دقيقة" data-subitems="استقطاب مميزين/محاضرين (جامعة نجران) — 10 د؛ مقترح تعديل مواد تخص الاستثمار المعرفي (جامعة الإمام محمد بن سعود الإسلامية) — 10 د؛ المرحلة الثانية من منصة قدرات (جامعة شقراء) — 20 د">
             <div class="time" data-time></div>
             <div>
-              <div class="title">نقاش مفتوح</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">نقاش مفتوح مع رؤساء الجامعات</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المدة الإجمالية: 40 دقيقة</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details>
+                <div class="row" data-statusrow></div>
+                <div class="hint"><b>محاور فرعية:</b><br/>استقطاب مميزين/محاضرين (جامعة نجران) — 10 دقائق<br/>مقترح تعديل مواد تخص الاستثمار المعرفي (جامعة الإمام محمد بن سعود الإسلامية) — 10 دقائق<br/>المرحلة الثانية من منصة «قدرات» (جامعة شقراء) — 20 دقيقة</div>
+              </div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="14:25" data-end="15:10">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="14:35" data-end="15:10" data-topic="تجربة التحول في جامعة الإمام عبد الرحمن بن فيصل" data-owner="جامعة الإمام عبد الرحمن بن فيصل" data-duration="عرض 25 د + مناقشة 10 د">
             <div class="time" data-time></div>
             <div>
-              <div class="title">تجربة التحول في جامعة الإمام عبد الرحمن بن فيصل (عرض + مناقشة)</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">تجربة التحول في جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المعد: جامعة الإمام عبد الرحمن بن فيصل • (عرض 25 د + مناقشة 10 د)</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="15:10" data-end="15:35">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="15:10" data-end="15:35" data-topic="مرصد البحث والابتكار في التعليم العالي" data-owner="الأمانة العامة لمجلس شؤون الجامعات" data-speaker="د. عمر بن سعود المطيري" data-duration="عرض 20 د + مناقشة 5 د">
             <div class="time" data-time></div>
             <div>
-              <div class="title">مرصد البحث والابتكار في التعليم العالي (عرض + مناقشة)</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">مرصد البحث والابتكار في التعليم العالي</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المعد: الأمانة العامة لمجلس شؤون الجامعات • المحاور: د. عمر بن سعود المطيري • (عرض 20 د + مناقشة 5 د)</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="15:35" data-end="16:00">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="15:35" data-end="15:55" data-topic="استراحة وصلاة العصر" data-duration="20 دقيقة">
             <div class="time" data-time></div>
             <div>
-              <div class="title">استراحة + صلاة العصر</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">استراحة وصلاة العصر</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المدة: 20 دقيقة</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="16:00" data-end="16:35">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="15:55" data-end="16:25" data-topic="كفاءة الإنفاق والتخطيط المالي والتحول في الجامعات" data-owner="الأمانة العامة لمجلس شؤون الجامعات" data-speaker="د. عامر بن عوض الزايدي" data-duration="عرض 20 د + مناقشة 10 د">
             <div class="time" data-time></div>
             <div>
-              <div class="title">منصة الإنفاق والتخطيط المالي والتحول في الجامعات (عرض + مناقشة)</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">كفاءة الإنفاق والتخطيط المالي والتحول في الجامعات</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المعد: الأمانة العامة لمجلس شؤون الجامعات • المحاور: د. عامر بن عوض الزايدي • (عرض 20 د + مناقشة 10 د)</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="16:35" data-end="17:05">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="16:25" data-end="16:55" data-topic="المواءمة مع سوق العمل" data-owner="الأمانة العامة لمجلس شؤون الجامعات" data-speaker="د. عبدالله بن عبدالعزيز الشدي" data-duration="عرض 20 د + مناقشة 10 د">
             <div class="time" data-time></div>
             <div>
-              <div class="title">المواءمة مع سوق العمل (عرض + مناقشة)</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">المواءمة مع سوق العمل</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المعد: الأمانة العامة لمجلس شؤون الجامعات • المحاور: د. عبدالله بن عبدالعزيز الشدي • (عرض 20 د + مناقشة 10 د)</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="17:05" data-end="17:35">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="16:55" data-end="17:25" data-topic="تقرير توظيف الخريجين في سوق العمل السعودي" data-owner="المرصد الوطني للعمل" data-duration="عرض 20 د + مناقشة 10 د">
             <div class="time" data-time></div>
             <div>
-              <div class="title">تقرير توظيف الخريجين في سوق العمل السعودي (عرض + مناقشة)</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">تقرير توظيف الخريجين في سوق العمل السعودي</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المعد/المحاور: المرصد الوطني للعمل • (عرض 20 د + مناقشة 10 د)</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="17:35" data-end="17:55">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="17:25" data-end="17:55" data-topic="دور الجامعات في تطوير مهارات وإعادة تأهيل القوى البشرية في سوق العمل (والتعلم مدى الحياة)" data-owner="جامعة الإمام عبد الرحمن بن فيصل" data-duration="عرض 20 د + مناقشة 10 د">
             <div class="time" data-time></div>
             <div>
-              <div class="title">دور الجامعات في تطوير المهارات وإعادة التأهيل والتعلم مدى الحياة (عرض + مناقشة)</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">دور الجامعات في تطوير مهارات وإعادة تأهيل القوى البشرية في سوق العمل (والتعلم مدى الحياة)</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المعد: جامعة الإمام عبد الرحمن بن فيصل • (عرض 20 د + مناقشة 10 د)</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
-          <div class="item" data-date="2026-02-04" data-start="17:55" data-end="18:00">
+
+          <div class="item agenda" data-date="2026-02-04" data-start="17:55" data-end="18:00" data-topic="صورة تذكارية لرؤساء الجامعات" data-duration="5 دقائق">
             <div class="time" data-time></div>
             <div>
-              <div class="title">صورة تذكارية</div>
-              <div class="loc">جامعة الإمام عبد الرحمن بن فيصل</div>
+              <div class="title">صورة تذكارية لرؤساء الجامعات</div>
+              <div class="loc">فندق موڤنبيك الخبر</div>
+              <div class="meta2">المدة: 5 دقائق</div>
               <span class="tag" data-tag></span>
+              <div class="details" data-details><div class="row" data-statusrow></div><div class="hint">اضغط مرة أخرى للإخفاء.</div></div>
             </div>
           </div>
         </div>
@@ -285,9 +351,48 @@
     });
   }
 
+  function humanize(ms){
+    const s = Math.max(0, Math.floor(ms/1000));
+    const h = Math.floor(s/3600);
+    const m = Math.floor((s%3600)/60);
+    if (h>0) return `${h} س ${m} د`;
+    return `${m} د`;
+  }
+
+  function statusFor(now, s, e){
+    if (now >= e) return 'ended';
+    if (now >= s && now < e) return 'ongoing';
+    return 'upcoming';
+  }
+
+  function renderStatusRow(item, now){
+    const s = parseLocal(item.dataset.date, item.dataset.start);
+    const e = parseLocal(item.dataset.date, item.dataset.end);
+    const state = statusFor(now, s, e);
+    const row = item.querySelector('[data-statusrow]');
+    if (!row) return;
+
+    row.innerHTML = '';
+    const mk = (t)=>{
+      const sp = document.createElement('span');
+      sp.textContent = t;
+      return sp;
+    };
+
+    if (state === 'ended') {
+      row.appendChild(mk('الحالة: انتهت'));
+    } else if (state === 'ongoing') {
+      row.appendChild(mk('الحالة: قائمة الآن'));
+      row.appendChild(mk(`المتبقي: ${humanize(e - now)}`));
+    } else {
+      row.appendChild(mk('الحالة: قادمة'));
+      row.appendChild(mk(`تبدأ بعد: ${humanize(s - now)}`));
+    }
+  }
+
   function clearMarks(){
     document.querySelectorAll('.item').forEach(it => {
-      it.classList.remove('now','next','done');
+      it.classList.remove('now','next','done','expanded');
       const tag = it.querySelector('[data-tag]');
       if (tag) { tag.className = 'tag'; tag.textContent = ''; }
     });
@@ -326,6 +431,8 @@
         const tag = x.it.querySelector('[data-tag]');
         if (tag) { tag.classList.add('done'); tag.textContent = 'انتهى'; }
       }
+      // keep per-item status data updated for click details
+      renderStatusRow(x.it, now);
     });
 
     if (current) {
@@ -356,6 +463,20 @@
 
   document.getElementById('scrollBtn').addEventListener('click', ()=>{
     if (window.__currentItem) window.__currentItem.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  // Click-to-show details (status + remaining)
+  document.addEventListener('click', (e)=>{
+    const item = e.target.closest('.item');
+    if (!item) return;
+
+    // Toggle expanded
+    const isOpen = item.classList.contains('expanded');
+    document.querySelectorAll('.item.expanded').forEach(x => x.classList.remove('expanded'));
+    if (!isOpen) {
+      item.classList.add('expanded');
+      renderStatusRow(item, new Date());
+    }
   });
 
   updateTimes();
