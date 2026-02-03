@@ -33,9 +33,9 @@
     }
     .sectionLabel small{display:block;color:var(--muted);font-weight:600;margin-top:4px}
 
-    .item{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:10px 10px;border-radius:14px;border:1px solid transparent; cursor:pointer}
+    .item{display:grid;grid-template-columns:160px 1fr;gap:12px;padding:10px 10px;border-radius:14px;border:1px solid transparent; cursor:pointer}
     .item + .item{margin-top:8px}
-    .time{font-variant-numeric:tabular-nums;font-weight:700;color:#dbeafe}
+    .time{font-variant-numeric:tabular-nums;font-weight:800;color:#dbeafe; direction:ltr; text-align:right; letter-spacing:.2px}
     .title{font-weight:800}
     .loc{color:var(--muted);font-size:12px;margin-top:2px}
     .meta2{color:var(--muted);font-size:12px;margin-top:6px;line-height:1.5}
@@ -301,14 +301,27 @@
 <script>
   function pad2(n){ return String(n).padStart(2,'0'); }
 
-  function to12h(hhmm){
+  function to12hParts(hhmm){
     let [h,m] = hhmm.split(':').map(Number);
-    let ampm = 'AM';
     if (h === 24) { h = 0; }
-    if (h >= 12) ampm = 'PM';
+    let ampm = (h >= 12) ? 'PM' : 'AM';
     let h12 = h % 12;
     if (h12 === 0) h12 = 12;
-    return `${h12}:${pad2(m)} ${ampm}`;
+    return { h12, m: pad2(m), ampm };
+  }
+
+  function formatRange(startHHMM, endHHMM){
+    const a = to12hParts(startHHMM);
+    const b = to12hParts(endHHMM);
+    const start = `${a.h12}:${a.m}`;
+    const end = `${b.h12}:${b.m}`;
+    if (a.ampm === b.ampm) return `${start}–${end} ${a.ampm}`;
+    return `${start} ${a.ampm}–${end} ${b.ampm}`;
+  }
+
+  function to12h(hhmm){
+    const p = to12hParts(hhmm);
+    return `${p.h12}:${p.m} ${p.ampm}`;
   }
 
   function parseLocal(dateStr, timeStr){
@@ -327,7 +340,7 @@
       const item = el.closest('.item');
       const s = item.dataset.start;
       const e = item.dataset.end;
-      el.textContent = `${to12h(s)} – ${to12h(e)}`;
+      el.textContent = formatRange(s, e);
     });
   }
 
@@ -404,7 +417,8 @@
 
     // Human-readable now
     const h = now.getHours(), m = now.getMinutes();
-    const now12 = `${to12h(`${pad2(h)}:${pad2(m)}`)} — ${now.getFullYear()}-${pad2(now.getMonth()+1)}-${pad2(now.getDate())}`;
+    const p = to12hParts(`${pad2(h)}:${pad2(m)}`);
+    const now12 = `${p.h12}:${p.m} ${p.ampm} — ${now.getFullYear()}-${pad2(now.getMonth()+1)}-${pad2(now.getDate())}`;
     document.getElementById('nowText').textContent = now12;
 
     // Collect visible items only
