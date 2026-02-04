@@ -465,8 +465,26 @@
       return { it, s, e };
     }).sort((a,b)=>a.s-b.s);
 
-    // Find current
-    let current = intervals.find(x => within(now, x.s, x.e));
+    // Find current (handle overlapping intervals)
+    // Rule: if multiple events overlap, prefer:
+    // 1) agenda items over non-agenda
+    // 2) shorter duration (more specific) over longer
+    // 3) later start time as tie-breaker
+    const overlapping = intervals.filter(x => within(now, x.s, x.e));
+    let current = null;
+    if (overlapping.length) {
+      current = overlapping.reduce((best, x) => {
+        if (!best) return x;
+        const bestIsAgenda = best.it.classList.contains('agenda');
+        const xIsAgenda = x.it.classList.contains('agenda');
+        if (xIsAgenda !== bestIsAgenda) return xIsAgenda ? x : best;
+        const bestDur = best.e - best.s;
+        const xDur = x.e - x.s;
+        if (xDur !== bestDur) return xDur < bestDur ? x : best;
+        if (x.s.getTime() !== best.s.getTime()) return x.s > best.s ? x : best;
+        return best;
+      }, null);
+    }
 
     // Find next
     let next = intervals.find(x => now < x.s);
